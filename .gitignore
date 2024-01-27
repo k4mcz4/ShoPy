@@ -1,0 +1,58 @@
+db.sqlite
+venv
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local configuration file (if you are using a local_settings.py file for configuration)
+instance/config.py
+
+# Environment variables file
+.env
+
+# Python virtual environment
+venv/
+
+# IDE files
+.vscode/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# Database
+db.sqlite
+
+# Compiled Python files
+*.pyc
+
+# Compiled C extension
+*.so
+
+# Caches
+__pycache__/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Flask specific
+instance/
+.webassets-cache
+
+# Editors
+*.sublime-workspace
+*.sublime-project
+*.komodoproject
+.komodotools
+.idea/
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db

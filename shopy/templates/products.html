@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="box">
+    <div class="block">
+        <input class="input" type="search" placeholder="Search">
+    </div>
+
+    <div class="block">
+        <button class="button js-modal-trigger is-primary" data-target="add-product">Add product</button>
+    </div>
+
+    <div class="columns block">
+        <div class="column">
+            <div class="table-container">
+                <table class="table is-hoverable is-fullwidth">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Barcode</th>
+                        <th>Name</th>
+                        <th>Net Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in all_products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.barcode }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                    </tr>
+                    {% endfor %}
+
+
+                    </tbody>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
