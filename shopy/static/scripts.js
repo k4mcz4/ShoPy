@@ -16,6 +16,37 @@ document.addEventListener('DOMContentLoaded', () => {
             formElement.submit();
         }
     });
+
+// Get all the rows
+let rows = document.querySelectorAll('.row');
+
+// Add a click event listener to each row
+rows.forEach(row => {
+  row.addEventListener('click', () => {
+    // Get the icon element
+    const icon = row.querySelector('.icon');
+
+    // If the row is already selected, deselect it and hide the icon
+    if (row.classList.contains('is-selected')) {
+      row.classList.remove('is-selected');
+      icon.style.visibility = 'hidden';
+    } else {
+      // If the row is not selected, deselect all rows, hide all icons,
+      // then select this row and show its icon
+      rows.forEach(r => {
+        r.classList.remove('is-selected');
+        r.querySelector('.icon').style.visibility = 'hidden';
+      });
+
+      row.classList.add('is-selected');
+      icon.style.visibility = 'visible';
+    }
+  });
+});
+
+
+
+
     // Function to validate the form
     function validateForm() {
         var barcode = document.getElementById('barcode').value.trim();
@@ -71,9 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal($target);
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
 
   // Get all "navbar-burger" elements
   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -92,4 +121,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
   });
-    });
+});

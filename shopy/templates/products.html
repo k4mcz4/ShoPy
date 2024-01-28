@@ -21,15 +21,17 @@
                         <th>Barcode</th>
                         <th>Name</th>
                         <th>Net Value</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for product in all_products %}
-                    <tr>
+                    <tr id={{ product.id }} class="row">
                         <td>{{ product.id }}</td>
                         <td>{{ product.barcode }}</td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
+                        <td><i class="icon fas fa-trash-alt" style="visibility: hidden;"></i>
                     </tr>
                     {% endfor %}
 
