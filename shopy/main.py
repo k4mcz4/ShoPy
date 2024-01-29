@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from . import db
 from .models import Product
@@ -23,7 +23,7 @@ def inventory():
     return render_template('inventory.html')
 
 
-@main.route('/products')
+@main.route('/products', methods=['GET'])
 @login_required
 def products():
     all_products = Product.query.all()
@@ -43,3 +43,17 @@ def add_products():
     db.session.commit()
 
     return redirect(url_for('main.products'))
+
+
+@main.route('/products/<int:product_id>', methods=['DELETE'])
+@login_required
+def remove_product(product_id):
+    product = Product.query.get(product_id)
+    print(product_id)
+    if product:
+        db.session.delete(product)
+        db.session.commit()
+        return jsonify({'status': 'success', 'message': 'Product removed successfully'})
+    else:
+        return jsonify({'status': 'error', 'message': 'Product not found'}), 404
+

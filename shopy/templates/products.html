@@ -31,7 +31,7 @@
                         <td>{{ product.barcode }}</td>
                         <td>{{ product.name }}</td>
                         <td>{{ product.price }}</td>
-                        <td><i class="icon fas fa-trash-alt" style="visibility: hidden;"></i>
+                        <td><i class="icon fas fa-trash-alt" style="visibility: hidden;" onclick="removeProduct({{ product.id }})"></i>
                     </tr>
                     {% endfor %}
 
