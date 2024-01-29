@@ -56,4 +56,3 @@ def remove_product(product_id):
         return jsonify({'status': 'success', 'message': 'Product removed successfully'})
     else:
         return jsonify({'status': 'error', 'message': 'Product not found'}), 404
-

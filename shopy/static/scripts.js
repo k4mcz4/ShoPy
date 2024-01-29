@@ -1,3 +1,40 @@
+document.addEventListener('DOMContentLoaded', function() {
+	var searchBar = document.getElementById('searchBar');
+	if (searchBar) {
+		searchBar.addEventListener('input', function(e) {
+			var searchText = e.target.value;
+			console.log('Search text:', searchText);
+
+
+			document.getElementById('searchBar').addEventListener('input', function(e) {
+				var searchText = e.target.value.toLowerCase();
+
+				// Get all the product rows
+				var rows = document.getElementsByClassName('row');
+
+				// Loop through all the rows and hide those that don't match the search query
+				for (var i = 0; i < rows.length; i++) {
+					var row = rows[i];
+					var productName = row.cells[2].textContent.toLowerCase(); // Assuming the product name is in the 3rd column
+					var productBarcode = row.cells[1].textContent.toLowerCase(); // Assuming the barcode is in the 2nd column
+
+					if (productName.includes(searchText) || productBarcode.includes(searchText)) {
+						row.style.display = ""; // Show the row
+					} else {
+						row.style.display = "none"; // Hide the row
+					}
+				}
+			});
+
+
+
+		});
+	} else {
+		console.error('Search bar not found');
+	}
+});
+
+
 function removeProduct(productId) {
     // Send a DELETE request to the server to remove the product
     fetch('/products/' + productId, {
