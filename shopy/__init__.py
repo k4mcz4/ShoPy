@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 
+
 db = SQLAlchemy()
 
 project_dir = os.path.abspath(os.path.dirname(__file__))
@@ -32,7 +33,7 @@ def create_app():
     migrate = Migrate(app, db)
 
     with app.app_context():
-        from .models import User
+        from .models import User, Product, StockTake, StockTakeInventory
         db.create_all()
         migrate.init_app(app)
 

@@ -1,4 +1,6 @@
 from flask_login import UserMixin
+from sqlalchemy import ForeignKeyConstraint
+
 from . import db
 
 
@@ -24,6 +26,9 @@ class StockTake(db.Model):
 
 class StockTakeInventory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    stock_take_id = db.Column(db.Integer, db.ForeignKey('stocktake.id'))
+    stock_take_id = db.Column(db.Integer, db.ForeignKey('stock_take.id'))
     product_barcode = db.Column(db.Integer)
     insert_date = db.Column(db.DateTime)
+    __table_args__ = (
+        ForeignKeyConstraint([stock_take_id], [StockTake.id], name='stock_take_id_fkey'),
+    )
