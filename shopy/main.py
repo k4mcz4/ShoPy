@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash
 from flask_login import login_required, current_user
 from . import db
 from .models import Product
@@ -40,7 +40,11 @@ def add_products():
 
     new_product = Product(barcode=barcode, name=product_name, price=price)
     db.session.add(new_product)
-    db.session.commit()
+
+    try:
+        db.session.commit()
+    except:
+        flash(f'Product with barcode {barcode} already exists!')
 
     return redirect(url_for('main.products'))
 
@@ -49,7 +53,6 @@ def add_products():
 @login_required
 def remove_product(product_id):
     product = Product.query.get(product_id)
-    print(product_id)
     if product:
         db.session.delete(product)
         db.session.commit()

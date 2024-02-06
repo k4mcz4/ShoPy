@@ -15,15 +15,16 @@ class Product(db.Model):
     price = db.Column(db.Integer)
 
 
+class StockTakeInventory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    stock_take_id = db.Column(db.Integer, db.ForeignKey('stock_take.id'))
+    product_barcode = db.Column(db.Integer)
+    insert_date = db.Column(db.DateTime)
+
+
 class StockTake(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     start_date = db.Column(db.Date)
     end_date = db.Column(db.Date)
-    stock_take_inventory = db.relationship('StockTakeInventory', backref='parent')
-
-
-class StockTakeInventory(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    stock_take_id = db.Column(db.Integer, db.ForeignKey('stocktake.id'))
-    product_barcode = db.Column(db.Integer)
-    insert_date = db.Column(db.DateTime)
+    stock_take_inventory = db.relationship(StockTakeInventory, backref='parent',
+                                           foreign_keys=[StockTakeInventory.stock_take_id])

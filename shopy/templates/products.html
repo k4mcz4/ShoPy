@@ -9,7 +9,16 @@
 
     <div class="block">
         <button class="button js-modal-trigger is-primary" data-target="add-product">Add product</button>
+
+
     </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="notification is-danger">
+            {{ messages[0] }}
+        </div>
+        {% endif %}
+        {% endwith %}
 
     <div class="columns block">
         <div class="column">
